@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DECODE // NEON MAXIMALISM</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Decode</h1>
+      <p>Client-side multi-format decoder // Base64 · URL · ROT · Hex · Binary · Morse · JWT · HTML</p>
+    </header>
+
+    <main>
+      <section class="io-panels">
+        <div class="panel input-panel">
+          <div class="panel-header">
+            <label for="input">Input</label>
+            <button type="button" id="clear-input" class="small">Clear</button>
+          </div>
+          <textarea id="input" placeholder="Paste encoded text here…" spellcheck="false"></textarea>
+          <div class="panel-footer">
+            <span id="input-stats">0 chars</span>
+            <button type="button" id="load-sample" class="small">Load sample</button>
+          </div>
+        </div>
+
+        <div class="panel output-panel">
+          <div class="panel-header">
+            <label for="output">Output</label>
+            <button type="button" id="copy-output" class="small">Copy</button>
+          </div>
+          <textarea id="output" readonly placeholder="Result appears here…" spellcheck="false"></textarea>
+          <div class="panel-footer">
+            <span id="output-stats">0 chars</span>
+            <span id="status" class="status"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="controls">
+        <div class="control-row">
+          <label for="mode">Mode</label>
+          <select id="mode">
+            <optgroup label="Common">
+              <option value="base64-decode" selected>Base64 Decode</option>
+              <option value="base64-encode">Base64 Encode</option>
+              <option value="url-decode">URL Decode</option>
+              <option value="url-encode">URL Encode</option>
+            </optgroup>
+            <optgroup label="Character transforms">
+              <option value="rot13">ROT13</option>
+              <option value="rot-bruteforce">ROT Brute-force (1-25)</option>
+              <option value="hex-decode">Hex Decode</option>
+              <option value="hex-encode">Hex Encode</option>
+              <option value="binary-decode">Binary Decode</option>
+              <option value="binary-encode">Binary Encode</option>
+              <option value="morse-decode">Morse Decode</option>
+              <option value="morse-encode">Morse Encode</option>
+            </optgroup>
+            <optgroup label="Hash / identifiers">
+              <option value="jwt-decode">JWT Decode</option>
+              <option value="html-decode">HTML Entities Decode</option>
+              <option value="html-encode">HTML Entities Encode</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="control-row" id="rot-options" hidden>
+          <label for="rot-shift">ROT shift</label>
+          <input id="rot-shift" type="number" min="1" max="25" value="13">
+        </div>
+
+        <div class="actions">
+          <button type="button" id="decode-btn" class="primary">Decode / Transform</button>
+          <button type="button" id="swap-btn" class="secondary">Swap I/O</button>
+        </div>
+      </section>
+
+      <section class="history">
+        <h2>History <button type="button" id="clear-history" class="small">Clear</button></h2>
+        <ul id="history-list"></ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>Runs entirely in your browser. No data is sent to any server.</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
